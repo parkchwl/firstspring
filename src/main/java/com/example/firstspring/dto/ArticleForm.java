@@ -1,5 +1,9 @@
 package com.example.firstspring.dto;
 
+import com.example.firstspring.entity.Article;
+
+import javax.persistence.Id;
+
 public class ArticleForm {
     private String title;
     private String content;
@@ -15,5 +19,9 @@ public class ArticleForm {
                 "title='" + title + '\'' +
                 ", content='" + content + '\'' +
                 '}';
+    }
+
+    public Article toEntity() {
+        return new Article(null, title, content);
     }
 }
