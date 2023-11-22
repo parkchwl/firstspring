@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class ArticleController {
-    @Autowired // 스프링부트가 미리 생성해놓은 객체를 가져다가 자동 연결해준다.
+    @Autowired// 스프링부트가 미리 생성해놓은 객체를 가져다가 자동 연결해준다.
     private ArticleRepository articleRepository;
 
     @GetMapping("/articles/new")
