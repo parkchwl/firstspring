@@ -39,8 +39,9 @@ public class ArticleController {
         //System.out.println(saved.toString());
         log.info(saved.toString());
 
-        return"";
+        return"redirect:/articles/" + saved.getId(); // redirect를 정의한다.
     }
+
     @GetMapping("/articles/{id}")
     public String show(@PathVariable Long id, Model model){
         log.info("id + = "+ id);
