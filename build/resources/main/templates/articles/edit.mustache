@@ -1,4 +1,4 @@
-{{layouts/header}}
+{{>layouts/header}}
 
 {{#article}}
 <form class="container" action="/articles/update" method="post">
@@ -15,4 +15,4 @@
     <a href="/articles/{{article.id}}">Back</a>
 </form>
 {{/article}}
-{{footer/header}}
+{{>layouts/footer}}
