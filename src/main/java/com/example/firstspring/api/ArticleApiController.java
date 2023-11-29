@@ -3,6 +3,7 @@ package com.example.firstspring.api;
 import com.example.firstspring.controller.repository.ArticleRepository;
 import com.example.firstspring.dto.ArticleForm;
 import com.example.firstspring.entity.Article;
+import com.example.firstspring.service.ArticleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,25 +16,27 @@ import java.util.List;
 @Slf4j
 public class ArticleApiController {
     @Autowired // Dependency Injection
-    private ArticleRepository articleRepository;
+    private ArticleService articleService;
 
     // GET
     @GetMapping("/api/articles")
     public List<Article> index(){
-        return articleRepository.findAll();
+        return articleService.index();
     }
     @GetMapping("/api/articles/{id}")
-    public Article index(@PathVariable Long id){
-        return articleRepository.findById(id).orElse(null);
+    public Article show(@PathVariable Long id){
+        return articleService.show(id);
     }
 
     // POST
     @PostMapping("/api/articles")
-    public Article create(@RequestBody ArticleForm dto){ //Resquset Body부분을 ArticleForm dto 로 오게 하는 Annotation
-        Article article = dto.toEntity();
-        return articleRepository.save(article);
+    public ResponseEntity<Article> create(@RequestBody ArticleForm dto){ //Resquset Body부분을 ArticleForm dto 로 오게 하는 Annotation
+        Article created = articleService.create(dto);
+        return (created != null) ?
+                ResponseEntity.status(HttpStatus.OK).body(created):
+                ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
-    // PATCH
+    /* PATCH
     @PatchMapping("/api/articles/{id}")
     public ResponseEntity<Article> update(@PathVariable Long id, @RequestBody ArticleForm dto) {
         // 1 : 수정용 엔티티 생성
@@ -69,5 +72,5 @@ public class ArticleApiController {
         articleRepository.delete(target);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
-
+*/
 }
