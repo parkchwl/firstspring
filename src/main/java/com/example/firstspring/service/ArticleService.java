@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Slf4j
+
 @Service // 해당 클래스를 서비스로 인식하여 스프링부트에 객체를 생성(등록)한다.
 public class ArticleService {
     @Autowired // Dependency Injection
