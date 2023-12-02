@@ -12,7 +12,7 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
             "FROM comment " +
             "WHERE article_id = :articleId",
     nativeQuery = true)
-
+    List<Comment> findByArticleId(Long articledId);
     // 특정 닉네임의 모든 댓글 조회
     List<Comment> findByNickname (String nickname);
 }
