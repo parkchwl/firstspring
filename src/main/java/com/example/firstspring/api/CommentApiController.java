@@ -16,7 +16,7 @@ public class CommentApiController {
 
     // 댓글 목록 조회
     @GetMapping("/api/articles/4/comments")
-    public ResponseEntity<List<CommentDto>> comments(@PathVariable Long articleId){
+    public ResponseEntity<List> comments(@PathVariable Long articleId){
         // 서비스에게 위임해서 결과를 가져오고
         List<CommentDto> dtos = commentService.comments(articleId);
 
